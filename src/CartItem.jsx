@@ -27,6 +27,15 @@ const CartItem = ({ onContinueShopping }) => {
 
   const handleRemove = (item) => {
   };
+  // Function to handle quantity changes
+  const handleQuantityChange = (itemName, newQuantity) => {
+    dispatch(updateQuantity({ name: itemName, quantity: newQuantity }));
+  };
+
+  // Function to remove item
+  const handleRemoveItem = (itemName) => {
+    dispatch(removeItem(itemName));
+  };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {

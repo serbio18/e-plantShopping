@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
 import { addItem } from './CartSlice'; // Import the addItem action
+import { useDispatch } from 'react-redux';
+import { addItem } from './CartSlice';
+
 
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({});
+    const dispatch = useDispatch();
 
     const plantsArray = [
         {
@@ -323,6 +327,18 @@ function ProductList({ onHomeClick }) {
             onClick={() => handleAddToCart(plant)} // Handle adding plant to cart
           >
             Add to Cart
+            // Modify your plant rendering to include Add to Cart button
+  {categoryData.plants.map((plant) => (
+    <div key={plant.name} className="plant-card">
+      {/* ... other plant details ... */}
+      <button 
+        onClick={() => dispatch(addItem(plant))}
+        className="add-to-cart-btn"
+      >
+        Add to Cart
+      </button>
+    </div>
+  ))}
           </button>
         </div>
       ))}
